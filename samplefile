@@ -1,0 +1,6 @@
+# MONGO_URI=mongodb+srv://raselsikder777rk:qennO5NV1mLTuXuw@nextauth.yz918.mongodb.net/nextauth?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://raselsikder777rk:qennO5NV1mLTuXuw@nextauth.yz918.mongodb.net/
+TOKEN_SECRET=nextauthapp
+DOMAIN=https://localhost/3000
+MAILTRAP_USER=98400986a6c3b5
+MAILTRAP_PASS=15d67a00164d03
