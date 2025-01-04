@@ -8,6 +8,9 @@ export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
     const { token } = reqBody;
+    if (!token) {
+      return NextResponse.json({ error: "Token not found", status: 400 });
+    }
 
     const user = await User.findOne({
       verifyToken: token,
@@ -15,7 +18,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (!user) {
-      NextResponse.json({ error: "Token Invalid", status: 500 });
+      return NextResponse.json({ error: "Token Invalid or Experied", status: 500 });
     }
 
     console.log(user);
@@ -25,12 +28,12 @@ export async function POST(request: NextRequest) {
     user.verifyTokenExpirey = undefined;
     await user.save();
 
-    NextResponse.json({
+    return NextResponse.json({
       message: "Email verified successfully",
       success: true,
       status: 200,
     });
   } catch (error: any) {
-    NextResponse.json({ error: error.message, status: 500 });
+    return NextResponse.json({ error: error.message, status: 501 });
   }
 }

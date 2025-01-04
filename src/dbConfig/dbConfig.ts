@@ -12,8 +12,6 @@ export async function connect() {
       console.log(`MongoDB connection Error, Make sure server is running: ${err}`);
       process.exit()
     })
-
-
   } catch (error) {
     console.log(`Somthing went wrong in connecting to Database: ${error}`)
   }

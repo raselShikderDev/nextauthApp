@@ -16,13 +16,17 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     // todo: configure mail for uses
     if (emailType === "VERIFY") {
       await User.findByIdAndUpdate(userId, {
-        verifyToken: hashToken,
+        $set: {
+          verifyToken: hashToken,
         verifyTokenExpirey: Date.now() + 3600000,
+        }
       });
     } else if (emailType === "RESET") {
       await User.findByIdAndUpdate(userId, {
-        forgotPasswordToken: hashToken,
+        $set: {
+          forgotPasswordToken: hashToken,
         forgotPasswordExpeirey: Date.now() + 3600000,
+        }
       });
     }
 
@@ -38,9 +42,9 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     });
 
     // Email html for reset Password
-    const resetHtml = `<p><a href="${process.env.DOMAIN}/resetpassword?token=${hashToken}">here</a> to reset your password or copy and paste link below in your broswer.</br>${process.env.DOMAIN}/resetpassword?token=${hashToken}</p>`;
+    const resetHtml = `<p><a href="${process.env.DOMAIN}/resetpassword?token=${hashToken}">Click here</a> to reset your password or copy and paste link below in your broswer.</br>${process.env.DOMAIN}/resetpassword?token=${hashToken}</p>`;
     // Email html for verify email
-    const verifyhtml = `<p><a href="${process.env.DOMAIN}/verifyemailtoken?token=${hashToken}">here</a> to Verify Your Email or copy and paste link below in your broswer.</br>${process.env.DOMAIN}/verifyemailtoken?token=${hashToken}</p>`;
+    const verifyhtml = `<p><a href="${process.env.DOMAIN}/verifyemail?token=${hashToken}">Click here</a> to Verify Your Email or copy and paste link below in your broswer.</br>${process.env.DOMAIN}/verifyemailtoken?token=${hashToken}</p>`;
 
     // mailinf info configuring
     const emailOptions = {
@@ -57,3 +61,4 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     throw new Error(error.message);
   }
 };
+~

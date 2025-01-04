@@ -44,7 +44,8 @@ console.log("Extracted userId for email:", saveduser._id);
       success: true,
       saveduser,
     });
-  } catch (error) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error:any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
