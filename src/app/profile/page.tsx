@@ -13,7 +13,7 @@ const ProfilePage = () => {
     try {
       const res = await axios.post("/api/users/me");
       console.log(res.data);
-      setData(res.data._id);
+      setData(res.data.data._id);
     } catch (error) {
       console.log("User Data not found: ", error);
     }

@@ -45,7 +45,9 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     const resetHtml = `<p><a href="${process.env.DOMAIN}/resetpassword?token=${hashToken}">Click here</a> to reset your password or copy and paste link below in your broswer.</br>${process.env.DOMAIN}/resetpassword?token=${hashToken}</p>`;
     // Email html for verify email
     const verifyhtml = `<p><a href="${process.env.DOMAIN}/verifyemail?token=${hashToken}">Click here</a> to Verify Your Email or copy and paste link below in your broswer.</br>${process.env.DOMAIN}/verifyemail?token=${hashToken}</p>`;
-
+    
+    //For using Github codespace
+    {emailType === "VERIFY" ? console.log(`${process.env.DOMAIN}/verifyemail?token=${hashToken}`) : console.log(`${process.env.DOMAIN}/resetpassword?token=${hashToken}`)}
     // mailinf info configuring
     const emailOptions = {
       from: "rasel@rasel.auth",
